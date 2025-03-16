@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(246, 246, 246);
+        }
+
+        .tb {
+            padding: 20px;
+        }
+
+        table {
+            text-align: center;
+        }
+
+        .title {
+            padding: 5px;
+            font-size: xx-large;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .alert-info {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+        </script>
+
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <strong><a class="navbar-brand" href="<?= url ?>">進捗管理システム</a></strong>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?= url ?>">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?= url ?>?page=form">進捗登録</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <? if(msg!=""){ ?>
+    <div class="alert alert-info" role="alert">
+        <?= msg ?>
+    </div>
+    <? } ?>
+
+    <div class="title">
+        進捗状況
+    </div>
+
+    <div class="table-responsive tb">
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <? for(let i in data[0]){ ?>
+                    <th scope="col">
+                        <?= data[0][i] ?>
+                    </th>
+                    <? } ?>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                <? for(let l in data){ ?>
+                <? if(l!=0){ ?>
+                <tr>
+                    <? for(let i in data[0]){ ?>
+                    <? if(i==0){ ?>
+                    <th scope="row">
+                        <?= data[l][i] ?>
+                    </th>
+                    <? }else{ ?>
+                    <td>
+                        <?= data[l][i] ?>
+                    </td>
+                    <? } ?>
+                    <? } ?>
+                </tr>
+                <? } ?>
+                <? } ?>
+            </tbody>
+        </table>
+
+</body>
+
+</html>
